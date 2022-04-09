@@ -1,0 +1,100 @@
+
+<div class="container">
+
+<form class="row g-3 " >
+  <div class="col-md-4">
+    <label for="Naziv" class="form-label">Naziv </label>
+
+    <input [(ngModel)]="txtNaziv" type="text" class="form-control" name="Naziv" id="Naziv" value="" >
+
+  </div>
+  <div class="col-md-4">
+    <label for="Cijena" class="form-label">Cijena</label>
+    <input [(ngModel)]="txtCijena" type="text" class="form-control" name="Cijena" id="Cijena" value="0.00KM" required>
+
+  </div>
+
+  <div class="col-md-4">
+    <label for="DatumObjave" class="form-label">Datum Objave </label>
+    <div class="row">
+      <!-- <span class="fa fa-lock"></span> -->
+      <input  [(ngModel)]="txtDatumObjave" type="date" name="DatumObjave" id="DatumObjave" class="form-control" placeholder="Datum Objave" value="" required>
+    </div>
+
+  </div>
+  <div class="col-md-3">
+    <label for="Grad" class="form-label">Grad</label>
+    <select [(ngModel)]="txtGrad" class="form-select" name="Grad" id="Grad" required>
+      <option value="undefined" disabled selected>
+        Odaberi grad
+      </option>
+      <option *ngFor="let obj of Gradovi" name="txtGrad"
+              [ngValue]="obj.id"
+              ngDefaultControl>{{obj?.naziv}}</option>
+    </select>
+  </div>
+
+  <div class="col-md-3">
+    <label for="Kategorija" class="form-label">Kategorija</label>
+    <select [(ngModel)]="txtKategorija" class="form-select"  name="Kategorija" id="Kategorija" required>
+      <option value="undefined" disabled selected>
+        Odaberi kategoriju
+      </option>
+      <option *ngFor="let obj of Kategorije" name="txtKategorija"
+              [ngValue]="obj.id"
+              ngDefaultControl>{{obj?.ime}}</option>
+    </select>
+  </div>
+
+  <div class="col-md-3">
+    <label for="Brend" class="form-label">Brend</label>
+    <select  [(ngModel)]="txtBrend" class="form-select" name="Brend" id="Brend" required>
+      <option value="undefined" disabled selected>
+        Odaberi brend
+      </option>
+      <option *ngFor="let obj of Brendovi" name="txtBrend"
+              [ngValue]="obj.id"
+              ngDefaultControl>{{obj?.ime}}</option>
+    </select>
+  </div>
+
+  <div class="col-md-3">
+    <label for="Spol" class="form-label">Spol</label>
+    <select [(ngModel)]="txtSpol" class="form-select" name="Spol"  id="Spol"  required>
+      <option value="undefined" disabled selected>
+        Odaberi Spol
+      </option>
+      <option *ngFor="let obj of Spolovi" name="txtSpol"
+              [ngValue]="obj.id"
+              ngDefaultControl>{{obj?.ime}}</option>
+    </select>
+  </div>
+
+  <div class="col-md-3">
+    <label for="Stanje" class="form-label">Stanje</label>
+    <select [(ngModel)]="txtStanje" class="form-select"  name="Stanje"  id="Stanje" required>
+      <option value="undefined" disabled selected>
+        Odaberi Stanje
+      </option>
+      <option *ngFor="let obj of Stanja" name="txtStanje"
+              [ngValue]="obj.id"
+              ngDefaultControl>{{obj?.naziv}}</option>
+    </select>
+  </div>
+
+
+  Photo < <input type="file" name="slika" id="slika" (change)="selectFile($event)">
+  <br>
+  <input type="button" value="Upload" (click)="upload()">
+  <ng-container *ngIf="res !=null">
+    <img src="{{res.slikaArtikla}}" width="120" height="100">
+
+  </ng-container>
+
+
+<div class="col-12">
+    <button (click)="BtnPosalji()" class="btn btn-primary" type="submit">Objavi</button>
+  </div>
+</form>
+
+</div>

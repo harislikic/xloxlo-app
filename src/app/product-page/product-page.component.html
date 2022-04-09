@@ -1,0 +1,32 @@
+
+  <div *ngIf="isAdmin===true">Obrisi objavu</div>
+  <div class="products">
+
+      <div    class="product" >
+
+  <img src="https://localhost:44308//uploads/{{Artikal.slikaArtikla}}" class="product-image" >
+  </div>
+
+  <div    class="user" >
+      <h5> Artikal Objavio</h5>
+
+    <h6 ><b>{{Artikal.korisnik.ime}} {{Artikal.korisnik.prezime}}</b> </h6>
+    <h6><b>{{Artikal.korisnik.grad.naziv}}, {{Artikal.korisnik.grad.postanskiBroj}} </b> </h6>
+    <h6><b>{{Artikal.korisnik.adresa}} </b> </h6>
+    <h6><b>{{Artikal.korisnik.email}} </b> </h6>
+
+    <div    class="zanarudjbu" >
+        <button   value="Kontakt" class="btn">Kontaktiraj vlasnika</button>
+    </div>
+</div>
+
+        <div    class="detalji" >
+            <h4 ><b>Naziv artikla: </b> {{Artikal.nazivArtikla}} </h4>
+            <h4 ><b>Kategorija: </b> {{Artikal.kategorijaprodukta.ime}}</h4>
+            <h4 ><b>Stanje: </b>{{Artikal.stanje.naziv}} </h4>
+            <h4 ><b>Datum objave: </b> {{Artikal.datumObjave.slice(0,10)}}</h4>
+            <h4 ><b>Cijena: </b> {{Artikal.cijena}} KM</h4>
+
+            </div>
+</div>
+

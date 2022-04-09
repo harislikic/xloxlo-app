@@ -1,0 +1,36 @@
+<div class="search-container">
+  <div class="row height d-flex justify-content-center align-items-center">
+    <div class="col-md-6">
+      <div class="form" style="display:block;"> <i class="search-div"></i> <input  type="text" [(ngModel)]="searchtext" name="searchtext" class="search-input" placeholder="Preraži...">  <i class="fas fa-search"></i> </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row-cols-sm-2" *ngFor="let product of Artikli ">
+      <div class="col-md-4">
+        <div class="card mb-4 box-shadow" >
+
+            <img  class="card-img-top" style="-webkit-border-top-left-radius:5px" src="https://localhost:44308//uploads/{{product.slikaArtikla}}"
+                  alt="Thumbnail [100%x2555]" style="height: 255px; width:100%; display:block">
+            <div class="card-body">
+              <p class="card-text">
+                {{product.nazivArtikla}}<br>
+                Cijena: {{product.cijena}} KM
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" (click)="ProduktDetalji(product.id)" class="btn btn-sm btn-outline-secondary">Pogledaj</button>
+                </div>
+                <small class="text-muted">Broj pregleda</small>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <br>
+      </div>
+</div>
+

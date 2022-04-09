@@ -1,0 +1,45 @@
+
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/homepage">HomePage</a>
+  </li>
+
+  <div class="btn-group">
+    <button type="button" class="btn  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Kategorije
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="/automobili">Automobili</a>
+      <a class="dropdown-item" href="/bicikla">Bicikli</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="#">Separated link</a>
+    </div>
+  </div>
+
+    <li class="nav-item">
+      <a *ngIf="isLog===false" class="nav-link" routerLink="/signup">Sign-up</a>
+    </li>
+
+    <li class="nav-item">
+      <a *ngIf="isLog===true" class="nav-link" routerLink="/edit-profile">Uredi račun</a>
+    </li>
+    <li class="nav-item">
+      <a *ngIf="isLog===true" class="nav-link" routerLink="/Objava">Objavi artikal</a>
+    </li>
+    <li class="nav-item">
+      <a *ngIf="isLog===true" class="nav-link" routerLink="/moje-objave">Objave</a>
+    </li>
+  <li class="nav-item">
+    <a class="nav-link" (click)="logout()" >{{isLog ? 'Logout' : 'Login'}}</a>
+  </li>
+</ul>
+
+
+
+
+<div><router-outlet></router-outlet></div>
+
+
+
+
