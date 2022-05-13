@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component,} from '@angular/core';
 import { LoginInformacije } from './_helpers/login-informacije';
 import { AutentifikacijaHelper } from './_helpers/autentifikacija-helper';
 import {HttpClient} from "@angular/common/http";
@@ -12,10 +12,11 @@ import {MojConfig} from "./moj-config";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+
   title = 'FrontendEdinHaris';
   isLog:boolean = AutentifikacijaHelper.getLoginInfo().isLogiran;
   Kategorije:any;
-
   constructor(private httpKlijent: HttpClient, private router: Router) {
   }
 
@@ -51,7 +52,6 @@ else{
   UcitajKategorije(){
     this.httpKlijent.get("https://localhost:44308/KategorijaProdukta/GetAll")
       .subscribe(x=>{
-        console.log("Kategorije", x);
         this.Kategorije = x;
       });
 

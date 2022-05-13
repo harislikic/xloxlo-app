@@ -10,18 +10,25 @@ import {AddArticleComponent} from "./add-article/add-article.component";
 import { UserObjavljeniArtikliComponent } from './user-objavljeni-artikli/user-objavljeni-artikli.component';
 import {AutomobiliComponent} from "./kategorija/automobili/automobili.component";
 import {BiciklaComponent} from "./kategorija/bicikla/bicikla.component";
+import {PorukeComponent} from "./poruke/poruke.component";
+import { CategoriesComponent } from './categories/categories.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes = [
+  {path:'reset-password',component:ResetPasswordComponent},
+  {path:'user-profile/:id',component:UserProfileComponent},
   {path:'login',component:LoginComponent},
   {path:'homepage',component:HomePageComponent},
   {path:'signup',component:SignUpComponent},
-
+  {path:'categories/:id',component:CategoriesComponent},
   {path:'edit-profile',component:EditProfileComponent},
-  {path:'product',component:ProductPageComponent},
+  {path:'product/:id',component:ProductPageComponent},
   {path:'Objava',component:AddArticleComponent},
   {path:'moje-objave',component:UserObjavljeniArtikliComponent},
   {path:'automobili',component:AutomobiliComponent},
-  {path:'bicikla',component:BiciklaComponent}
+  {path:'bicikla',component:BiciklaComponent},
+  {path:'poruke',component:PorukeComponent}
 
 
 

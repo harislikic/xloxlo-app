@@ -7,30 +7,48 @@
 </div>
 
 
-<div class="album py-5 bg-light">
-  <div class="container">
-    <div class="row-cols-sm-2" *ngFor="let product of Artikli ">
-      <div class="col-md-4">
-        <div class="card mb-4 box-shadow" >
+   
+    <body>
 
-            <img  class="card-img-top" style="-webkit-border-top-left-radius:5px" src="https://localhost:44308//uploads/{{product.slikaArtikla}}"
-                  alt="Thumbnail [100%x2555]" style="height: 255px; width:100%; display:block">
-            <div class="card-body">
-              <p class="card-text">
-                {{product.nazivArtikla}}<br>
-                Cijena: {{product.cijena}} KM
-              </p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" (click)="ProduktDetalji(product.id)" class="btn btn-sm btn-outline-secondary">Pogledaj</button>
+ 
+        <!-- Section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    <div *ngFor="let a of Artikli" class="col mb-5" >
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{{a.slikaArtikla}}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{a.nazivArtikla}}</h5>
+                                    <!-- Product price-->
+                                    {{a.cijena}}KM
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="product/{{a.id}}">Pogledaj detalje</a></div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <small class="text-muted">Broj pregleda</small>
-              </div>
             </div>
-          </div>
+        </section>
+        <!-- Footer-->
+        <footer class="py-5 " style="background-color:#2BBBAD">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; XloXlo 2022</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
 
-        </div>
-        <br>
-      </div>
-</div>
+
+
+
 

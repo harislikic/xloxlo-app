@@ -19,13 +19,16 @@ export class SignUpComponent implements OnInit {
   txtDatumRodjenja:any;
   txtGrad:any;
   txtAdresa:any;
-
+  Spolovi:any;
+  txtSpol:any;
   show: boolean = false;
+  txtBrojtelefona:any;
 
   constructor(private httpKlijent: HttpClient, private  router :Router) { }
 
   ngOnInit(): void {
     this.UcitajGradove();
+    this.UcitajSpolove();
   }
   UcitajGradove() {
     this.httpKlijent.get("https://localhost:44308/Grad/GetAll")
@@ -34,6 +37,12 @@ export class SignUpComponent implements OnInit {
     this.Gradovi=x;
 
   })}
+  UcitajSpolove() {
+    this.httpKlijent.get("https://localhost:44308/Spol/GetAll").subscribe((x: any) => {
+      console.log("Spolovi",x);
+      this.Spolovi = x;
+    })
+  }
   password() {
     this.show = !this.show;
 }
@@ -49,7 +58,8 @@ export class SignUpComponent implements OnInit {
       dtumRodjenja:this.txtDatumRodjenja,
       grad_id:this.txtGrad ,
       adresa:this.txtAdresa,
-     
+      spol_id: this.txtSpol,
+      kontaktTelefon:this.txtBrojtelefona
     
     };
     this.httpKlijent.post("https://localhost:44308/Korisnik/Add", saljemo)

@@ -19,6 +19,7 @@ export class EditProfileComponent implements OnInit {
   txtDatumRodjenja:any;
   txtGrad:any;
   txtAdresa:any;
+  file: any;
 
 
   constructor(private httpKlijent: HttpClient, private  router :Router) { }
@@ -27,6 +28,9 @@ export class EditProfileComponent implements OnInit {
     this.UcitajKorisnika();
     this.UcitajGradove();
 
+  }
+  selectFile(e: any) {
+    this.file = e.target.files[0];
   }
   UcitajKorisnika(){
     this.httpKlijent.get("https://localhost:44308/Korisnik/Get/"+AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId)
@@ -52,6 +56,8 @@ export class EditProfileComponent implements OnInit {
         dtumRodjenja:this.korisnik.datumRodjenja,
         grad_id:this.korisnik.grad_id ,
         adresa:this.korisnik.adresa,
+        slikaProfila:this.file,
+        spol_id: this.korisnik.spol_id,
 
 
       };

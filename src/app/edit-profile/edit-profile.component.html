@@ -45,6 +45,11 @@
 
                                     <input  class="form__input" [(ngModel)]="korisnik.adresa" [ngModelOptions]="{name: 'korisnik.adresa'}" >
                                 </div>
+                                <div class="row">
+                                    <h6 class="Helper">Dodaj sliku</h6>
+                                    <!-- <span class="fa fa-lock"></span> -->
+                                    <input  type="file" name="slika" id="file" (change)="selectFile($event)">
+                                </div>
                             </div>
 
 						</form>

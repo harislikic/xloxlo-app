@@ -57,8 +57,7 @@ Stanja:any;
     this.httpKlijent.delete("https://localhost:44308/Artikal/Delete/"+ id)
     .subscribe(x=>{
       alert("Objava uspjesno izbrisana!")
-      window.location.reload();
-
+this.UcitajArtikle();
     });
   }
   UrediProizvod(index:any){
@@ -106,7 +105,7 @@ Stanja:any;
       if(x !=null)
       {
         alert("uspjesno uredjivanje");
-        window.location.reload();
+        this.UcitajArtikle();
       }
       else{
 
