@@ -44,7 +44,7 @@
         Odaberi brend
       </option>
       <option *ngFor="let obj of Brendovi" name="txtBrend"
-              [ngValue]="obj.id"
+          [value]="obj.id"
               ngDefaultControl>{{obj?.ime}}
         <div *ngIf="brend.touched && brend.invalid" class="alert-danger">
           Obavezno polje

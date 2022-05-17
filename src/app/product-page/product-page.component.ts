@@ -14,7 +14,7 @@ export class ProductPageComponent implements OnInit {
   Logirani:any;
   islog:boolean=AutentifikacijaHelper.getLoginInfo().isLogiran;
   txtSadrzaj:any;
-  logirani:any=AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId;
+  logirani:any;
   Komentari:any;
   Artikal:any;
   Vlasnikid:any;
@@ -33,7 +33,9 @@ export class ProductPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.UcitajArtikal();
-    this.UcitajLogiranog();
+    if(AutentifikacijaHelper.getLoginInfo().isLogiran==true){
+      this.logirani=AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId;
+    this.UcitajLogiranog();}
     console.log(this.isLog);
     this.UcitajKomentare();
     this.UcitajSlikeArtikla();
@@ -135,17 +137,19 @@ export class ProductPageComponent implements OnInit {
 
 
   dodajslike() {
+
+    let podaci={
+
+      artikal_id : this.idArtikla
+    };
     const frmData = new FormData();
     for (var i = 0; i < this.myFiles.length; i++) {
       frmData.append("fileUpload", this.myFiles[i]);
-
+   
     }
-    let podaci={
-      imageName : this.myFiles,
-      artikal_id : this.idArtikla
-    };
+
     console.log("prije",podaci);
-    this.httpKlijent.post("https://localhost:44308/Artikal/DodajSlike/"+ this.idArtikla, podaci)
+    this.httpKlijent.post("https://localhost:44308/Artikal/DodajSlike/"+ this.idArtikla,frmData , {responseType: 'blob'} )
       .subscribe((x: any) => {
         if (x != null) {
           alert("Uspjesno dodane slike");

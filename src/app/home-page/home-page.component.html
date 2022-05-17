@@ -1,16 +1,16 @@
 <div class="search-container">
   <div class="row height d-flex justify-content-center align-items-center">
     <div class="col-md-6">
-      <div class="form" style="display:block;"> <i class="search-div"></i> <input  type="text" [(ngModel)]="searchtext" name="searchtext" class="search-input" placeholder="Preraži...">  <i class="fas fa-search"></i> </div>
+      <div class="form" style="display:block;"> <i class="search-div"></i> <input  type="text" (ngModelChange)="Pretraga()" [(ngModel)]="searchtext" name="searchtext" class="search-input" placeholder="Preraži...">  <i class="fas fa-search"></i> </div>
     </div>
   </div>
 </div>
 
 
-   
+
     <body>
 
- 
+
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
@@ -18,7 +18,7 @@
                     <div *ngFor="let a of Artikli" class="col mb-5" >
                         <div class="card h-100">
                             <!-- Product image-->
-                            <img class="card-img-top" src="{{a.slikaArtikla}}" alt="..." />
+                            <img class="card-img-top" src="{{a.slikaArtikla}}" alt="" />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">

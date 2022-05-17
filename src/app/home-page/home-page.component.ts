@@ -14,7 +14,7 @@ export class HomePageComponent implements OnInit {
 
   Artikli:any;
   searchtext : any;
-  brojpregleda = 0;
+
   constructor(private httpKlijent: HttpClient, private  router :Router) { }
 
   ngOnInit(): void {
@@ -28,13 +28,23 @@ export class HomePageComponent implements OnInit {
       console.log("Artikli", x);
       this.Artikli = x;
     });
-    this.brojpregleda++;
+
+  }
+  Pretraga()
+  {
+    if(this.searchtext==" ")
+    {
+      this.ngOnInit();
+    }
+    else {
+     return this.Artikli.filter((x:any)=> x.nazivArtikla.toLowerCase().startsWith(this.searchtext));
+    }
   }
 
 ProduktDetalji(id:any){
 
   this.router.navigate(['product'])
   localStorage.setItem("ProduktDetalji", id);
-}
+  }
 
 }

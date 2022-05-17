@@ -1,4 +1,4 @@
- 
+
 <body>
 	<!-- Main Content -->
 		<div class="row main-content bg-success text-center">
@@ -15,14 +15,14 @@
 						<form control="" class="form-group">
 							<div class="row">
                                 <h6 class="Helper" >Uredi ime</h6>
-								<input class="form__input" [(ngModel)]="korisnik.ime" [ngModelOptions]="{name: 'korisnik.ime'}">	
+								<input class="form__input" [(ngModel)]="korisnik.ime" [ngModelOptions]="{name: 'korisnik.ime'}">
 							</div>
                             <div class="row">
 								<!-- <span class="fa fa-lock"></span> -->
                                 <h6 class="Helper">Uredi prezime</h6>
 
 								<input  class="form__input" [(ngModel)]="korisnik.prezime" [ngModelOptions]="{name: 'korisnik.prezime'}"  >
-                            </div>							
+                            </div>
                             <div class="row">
 								<!-- <span class="fa fa-lock"></span> -->
                                 <h6 class="Helper"style="width:33%;">Uredi mail</h6>
@@ -32,12 +32,10 @@
                             <div class="row">
                                 <h6 class="Helper">Uredi grad</h6>
 
-                                <select class="form__input" style="color:black" id="select" name="code" size="1" [(ngModel)]="korisnik.grad.id" [ngModelOptions]="{name: 'korisnik.grad'}">
-                                    <option value="undefined" disabled selected>
-                                        {{korisnik.grad.naziv}}
-                                    </option>
-                                    <option *ngFor="let obj of Gradovi" name="txtGrad" 
-                                    >{{obj?.naziv}}</option>                               
+                                <select class="form__input" style="color:black" id="select" name="code" size="1" [(ngModel)]="korisnik.grad_id" [ngModelOptions]="{name: 'korisnik.grad.id'}">
+
+                                    <option *ngFor="let obj of Gradovi" name="txtGrad" [value]="obj.id"
+                                    >{{obj?.naziv}}</option>
                                 </select>
                                 <div class="row">
                                     <!-- <span class="fa fa-lock"></span> -->
@@ -46,15 +44,21 @@
                                     <input  class="form__input" [(ngModel)]="korisnik.adresa" [ngModelOptions]="{name: 'korisnik.adresa'}" >
                                 </div>
                                 <div class="row">
-                                    <h6 class="Helper">Dodaj sliku</h6>
                                     <!-- <span class="fa fa-lock"></span> -->
-                                    <input  type="file" name="slika" id="file" (change)="selectFile($event)">
+                                    <h6 class="Helper">Uredi telefon</h6>
+
+                                    <input  class="form__input" [(ngModel)]="korisnik.kontaktTelefon" [ngModelOptions]="{name: 'korisnik.KontaktTelefon'}" >
+                                </div>
+                                <div class="row">
+                                    <h6 class="Helper">Dodaj sliku </h6>
+                                    <!-- <span class="fa fa-lock"></span> -->
+                                    <input enctype="multipart/form-data" type="file" name="slika" id="file" (change)="selectFile($event)">
                                 </div>
                             </div>
 
 						</form>
 					</div>
-			
+
                     <div class="row">
                         <button  (click)="SacuvajPromjene()"  class="btn">Sacuvaj promjene</button>
                     </div>
@@ -63,3 +67,5 @@
 		</div>
 
 </body>
+
+

@@ -111,7 +111,7 @@ export class AddArticleComponent implements OnInit {
 
     let podaci = {
       Kategorija_Produkta_id: this.txtKategorija,
-      Brend_id: this.txtBrend,
+      Brend_id: Number(this.txtBrend),
       korisnik_id: AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId,
       NazivArtikla: this.txtNaziv,
       Cijena: this.txtCijena,

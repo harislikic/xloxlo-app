@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AutentifikacijaHelper } from '../_helpers/autentifikacija-helper';
 
@@ -22,7 +22,9 @@ export class EditProfileComponent implements OnInit {
   file: any;
 
 
-  constructor(private httpKlijent: HttpClient, private  router :Router) { }
+
+
+  constructor(private httpKlijent: HttpClient, private  router :Router,) { }
 
   ngOnInit(): void {
     this.UcitajKorisnika();
@@ -31,6 +33,9 @@ export class EditProfileComponent implements OnInit {
   }
   selectFile(e: any) {
     this.file = e.target.files[0];
+
+    console.log(this.file);
+
   }
   UcitajKorisnika(){
     this.httpKlijent.get("https://localhost:44308/Korisnik/Get/"+AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId)
@@ -48,20 +53,22 @@ export class EditProfileComponent implements OnInit {
   })}
   SacuvajPromjene()
     {
+
       let saljemo={
 
         ime:this.korisnik.ime,
         prezime:this.korisnik.prezime,
         email:this.korisnik.email,
-        dtumRodjenja:this.korisnik.datumRodjenja,
-        grad_id:this.korisnik.grad_id ,
+        grad_id:Number(this.korisnik.grad.id) ,
         adresa:this.korisnik.adresa,
-        slikaProfila:this.file,
-        spol_id: this.korisnik.spol_id,
+        KontaktTelefon:this.korisnik.kontaktTelefon,
 
 
       };
-      this.httpKlijent.post("https://localhost:44308/Korisnik/Update/"+ AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId, saljemo)
+      console.log("ovo su podatci",saljemo);
+
+
+      this.httpKlijent.post("https://localhost:44308/Korisnik/Update/"+ AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId,saljemo)
       .subscribe((x:any)=>{
         if(x !=null)
         {
@@ -69,8 +76,6 @@ export class EditProfileComponent implements OnInit {
 
           console.log("x",x);
           console.log("korisnik", this.korisnik);
-
-
         }
         else{
 
@@ -78,6 +83,17 @@ export class EditProfileComponent implements OnInit {
         }
 
       });
+
+      const formData = new FormData();
+      formData.append("file",this.file, this.file.name)
+
+      this.httpKlijent.post("https://localhost:44308/Korisnik/DodajSlike/"+ AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId,formData , {responseType: 'blob'})
+        .subscribe((x:any)=>{
+         console.log(x);
+        });
+
     }
+
+
 
 }

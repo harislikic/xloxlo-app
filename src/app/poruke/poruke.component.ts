@@ -45,7 +45,7 @@ export class PorukeComponent implements OnInit {
     let podaci={
       sadrzaj:this.txtporuka,
       posiljaoc_id:AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId,
-      primaoc_id: this.korisnikid
+      primaoc_id: 9
     };
     console.log(podaci);
     this.httpKlijent.post("https://localhost:44308/Poruka/Add",podaci).subscribe((x:any)=>{
