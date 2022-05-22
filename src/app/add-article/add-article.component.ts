@@ -38,6 +38,7 @@ export class AddArticleComponent implements OnInit {
   Spolovi: any;
   Stanja: any;
 
+  novidodani:any;
   constructor(private httpKlijent: HttpClient, private router: Router) {
   }
 
@@ -106,48 +107,60 @@ export class AddArticleComponent implements OnInit {
 
   BtnPosalji() {
 
-    let formData = new FormData();
-    formData.append('file', this.file);
+
 
     let podaci = {
-      Kategorija_Produkta_id: this.txtKategorija,
-      Brend_id: Number(this.txtBrend),
+      kategorija_Produkta_id: Number(this.txtKategorija),
+      brend_id: Number(this.txtBrend),
       korisnik_id: AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId,
-      NazivArtikla: this.txtNaziv,
-      Cijena: this.txtCijena,
-      Aktivan: true,
-      Stanje_id: this.txtStanje,
-      DatumObjave: new Date(),
-      SlikaArtikla: this.file,
-      Godiste: this.txtGodiste,
-      Kilometraza: this.txtKilometraza,
-      Registrovan: this.registrovan,
-      Plin: this.plin,
-      Klima: this.klima,
-      ABS: this.abs,
-      Gorivo: this.txtGorivo,
-      Model: this.txtModel,
-      DetaljanOpis: this.txtDetaljanopis,
+      nazivArtikla: this.txtNaziv,
+      cijena: this.txtCijena,
+      aktivan: true,
+      datumObjave: new Date(),
+      stanje: Number(this.txtStanje),
+
+      godiste: this.txtGodiste,
+      kilometraza: this.txtKilometraza,
+      registrovan: this.registrovan,
+      plin: this.plin,
+      klima: this.klima,
+      abs: this.abs,
+      gorivo: this.txtGorivo,
+      model: this.txtModel,
+      detaljanOpis: this.txtDetaljanopis,
 
 
     };
     console.log("prije",podaci);
 
-    this.httpKlijent.post("https://localhost:44308/Artikal/Add", podaci)
+    this.httpKlijent.post("https://localhost:44308/Artikal/Add", podaci  )
       .subscribe((x: any) => {
         if (x != null) {
           alert("Uspjesno dodan artikal");
           console.log("x", x);
-          console.log(this.Korisnik);
 
-          this.router.navigate(['homepage'])
-            .then(() => {
-              window.location.reload();
-            });
+          this.novidodani=x;
+          console.log(this.novidodani.id)
+          const formData = new FormData();
+          formData.append("file",this.file, this.file.name)
+          let id= this.novidodani.id;
+          console.log("ovo je",formData)
+
+          this.httpKlijent.post("https://localhost:44308/Artikal/DodajSliku/"+id,formData, {responseType: 'blob'})
+            .subscribe((x:any)=>{
+              console.log("slika ",x);
+            })
+
+
         } else {
           alert("Pogresan unos");
         }
-      })
+      });
+
+
+
+
+
   }
 
   registrovanchechbox(Event: any) {

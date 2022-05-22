@@ -50,10 +50,17 @@ export class ResetPasswordComponent implements OnInit {
       if(x !=null)
       {
         alert("Uspjesno ste promjenili lozinku!");
-        AutentifikacijaHelper.setLoginInfo(x);
-        console.log("x", x);
-      console.log(this.novalozinka1);
-
+       let mail={
+        emailToId: this.Korisnik.email,
+        emailToName: this.Korisnik.ime +" "+ this.Korisnik.prezime,
+        emailSubject: "Promjenili ste lozinku",
+        emailBody: "Postovani, upravo ste promjenili svoju lozinku. U koliko se ne radi o Vasoj akciji molimo da nas obavjestite."
+       }
+       this.httpKlijent.post<LoginInformacije>("https://localhost:44308/Email", mail) .subscribe(x=>{
+        console.log("Mail", x);
+    
+      });
+       
       }
       else{
         AutentifikacijaHelper.setLoginInfo(null as any)

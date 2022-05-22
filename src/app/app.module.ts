@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClientModule,HttpClientXsrfModule } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -21,6 +21,7 @@ import { PorukeComponent } from './poruke/poruke.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { TwoWayAuthComponent } from './two-way-auth/two-way-auth.component';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     LoginComponent,
     HomePageComponent,
     SignUpComponent,
-
+TwoWayAuthComponent,
     EditProfileComponent,
     ProductPageComponent,
     AddArticleComponent,
@@ -40,6 +41,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     CategoriesComponent,
     UserProfileComponent,
     ResetPasswordComponent,
+    TwoWayAuthComponent,
 
 
   ],
@@ -48,12 +50,16 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+     HttpClientXsrfModule.withOptions({
+      cookieName: 'XSRF-TOKEN',
+      headerName: 'X-CSRF-TOKEN'
+    }),
     Ng2SearchPipeModule,
     BrowserAnimationsModule,
     CommonModule,
 
   ],
-  providers: [],
+  providers: [[CookieService]],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

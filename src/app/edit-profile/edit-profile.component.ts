@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AutentifikacijaHelper } from '../_helpers/autentifikacija-helper';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-edit-profile',
@@ -36,6 +37,10 @@ export class EditProfileComponent implements OnInit {
 
     console.log(this.file);
 
+    this.file = e.target.files;
+    console.log(this.file);
+
+
   }
   UcitajKorisnika(){
     this.httpKlijent.get("https://localhost:44308/Korisnik/Get/"+AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId)
@@ -51,8 +56,42 @@ export class EditProfileComponent implements OnInit {
     this.Gradovi=x;
 
   })}
+  Ukljuci(){
+    this.httpKlijent.post("https://localhost:44308/Korisnik/UpdateTwoway/"+ AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId,true)
+      .subscribe((x:any)=>{
+        if(x !=null)
+        {
+          alert("uspjesna Promjena");
+
+        }
+        else{
+
+          alert("neispravna Promjena" );
+        }
+
+      });
+  }
+  Iskljuci(){
+    this.httpKlijent.post("https://localhost:44308/Korisnik/UpdateTwoway/"+ AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId,false)
+    .subscribe((x:any)=>{
+      if(x !=null)
+      {
+        alert("uspjesna Promjena");
+
+      }
+      else{
+
+        alert("neispravna Promjena" );
+      }
+
+    });
+  }
   SacuvajPromjene()
     {
+    //  let formData = new FormData();
+
+   //  formData.append('file', this.file.name);
+     //console.log(formData);
 
       let saljemo={
 
@@ -63,6 +102,7 @@ export class EditProfileComponent implements OnInit {
         adresa:this.korisnik.adresa,
         KontaktTelefon:this.korisnik.kontaktTelefon,
 
+        slikaArtikla:this.file.name,
 
       };
       console.log("ovo su podatci",saljemo);
@@ -86,11 +126,12 @@ export class EditProfileComponent implements OnInit {
 
       const formData = new FormData();
       formData.append("file",this.file, this.file.name)
-
+console.log("aa",formData);
       this.httpKlijent.post("https://localhost:44308/Korisnik/DodajSlike/"+ AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId,formData , {responseType: 'blob'})
         .subscribe((x:any)=>{
          console.log(x);
         });
+
 
     }
 

@@ -14,11 +14,14 @@ import {PorukeComponent} from "./poruke/poruke.component";
 import { CategoriesComponent } from './categories/categories.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { TwoWayAuthComponent } from './two-way-auth/two-way-auth.component';
 
 const routes: Routes = [
   {path:'reset-password',component:ResetPasswordComponent},
   {path:'user-profile/:id',component:UserProfileComponent},
   {path:'login',component:LoginComponent},
+  {path:'two-way',component:TwoWayAuthComponent},
+
   {path:'homepage',component:HomePageComponent},
   {path:'signup',component:SignUpComponent},
   {path:'categories/:id',component:CategoriesComponent},

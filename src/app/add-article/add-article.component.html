@@ -55,7 +55,7 @@
 
   <div class="col-md-3">
     <label for="Stanje" class="form-label">Stanje</label>
-    <select [(ngModel)]="txtStanje" class="form-select"  name="Stanje"  id="Stanje" required>
+    <select [(ngModel)]="txtStanje"  class="form-select"  name="Stanje"  id="Stanje" required>
       <option value="undefined" disabled selected>
         Odaberi Stanje
       </option>
@@ -122,7 +122,7 @@
   </div>
 
 
-  <input type="file"   required name="slika" id="file" (change)="selectFile($event)">
+  <input type="file"   name="files" multiple  required name="slika" id="file" (change)="selectFile($event)">
 
   <br>
   <input type="button" value="Upload" (click)="upload()">

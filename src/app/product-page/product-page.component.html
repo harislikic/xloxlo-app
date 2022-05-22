@@ -6,8 +6,9 @@
           <section class="py-5" >
               <div class="container px-4 px-lg-5 my-5">
                   <div class="row gx-4 gx-lg-5 align-items-center">
-                      <div  class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{Artikal.slikaArtikla}}" alt="..." /></div>
-                      <div class="col-md-6">
+                    <div  class="col-md-6" href="#galleryModal" data-toggle="modal"> <div class="small mb-1">Klikom na sliku mozete pogledati ostale fotografije   artikla!</div><img class="card-img-top mb-5 mb-md-0" src="{{Artikal.slikaArtikla}}" alt="..." /></div>
+                    <div class="col-md-6">
+                   
                           <div class="small mb-1">Kategorija: {{Artikal.kategorijaprodukta.ime}}</div>
                           <h1 class="display-5 fw-bolder">{{Artikal.brend.ime}} {{Artikal.nazivArtikla}}</h1>
                           <div class="fs-5 mb-5" >
@@ -98,6 +99,35 @@
                     </div>
             </div>
         </div>
+       
+
+       
+      
+      <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h3 class="text-center mb-0"></h3>
+                      <button type="button" class="close float-right" aria-label="Close" data-dismiss="modal">
+                        <span aria-hidden="true">&#xD7;</span>
+                      </button>
+                  </div>
+                  <div class="container">
+                    <div class="row py-3">            
+                        <div class="col-md-5 col-6 py-2" *ngFor="let s of SlikeArtikla">
+                                <img  src="{{s.imageName}}" class="img-fluid img-thumbnail">
+                        </div>
+                        
+                    </div>
+                </div>
+                  
+                  <div class="modal-footer">
+                      <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">OK</button>
+                  </div>
+              </div>
+          </div>
+      </div>    
+      
 
     <!-- comments-->
 
@@ -137,17 +167,7 @@
   <div class="buttons"> <button  (click)="dodajslike()"  class="btn btn-primary px-4 ms-3">Dodaj slike</button> </div>
 
   <br>
-  <div class="photo-gallery">
-  <div class="container">
-    <div class="intro">
-      <h2 class="text-center">Galerija slika</h2>
-
-    </div>
-    <div class="row photos">
-      <div *ngFor="let s of SlikeArtikla"  class="col-md-6"><img class="card-img-bottom mb-4 mb-md-0" src="{{s.imageName}}" alt="..." />
-    </div>
-  </div>
-  </div>
+  
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>

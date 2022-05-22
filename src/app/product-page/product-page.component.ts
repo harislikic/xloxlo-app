@@ -5,6 +5,7 @@ import {LoginInformacije} from "../_helpers/login-informacije";
 import { AutentifikacijaHelper } from '../_helpers/autentifikacija-helper';
 import { ActivatedRoute } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser'
+
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
@@ -133,23 +134,27 @@ export class ProductPageComponent implements OnInit {
     for (var i = 0; i < e.target.files.length; i++) {
       this.myFiles.push(e.target.files[i]);
     }
+
+
   }
 
 
   dodajslike() {
 
-    let podaci={
-
-      artikal_id : this.idArtikla
-    };
     const frmData = new FormData();
     for (var i = 0; i < this.myFiles.length; i++) {
       frmData.append("fileUpload", this.myFiles[i]);
-   
     }
+    console.log(frmData);
+    console.log(this.myFiles);
 
-    console.log("prije",podaci);
     this.httpKlijent.post("https://localhost:44308/Artikal/DodajSlike/"+ this.idArtikla,frmData , {responseType: 'blob'} )
+    let podaci={
+      imageName : this.myFiles,
+      artikal_id : this.idArtikla
+    };
+    console.log("prije",podaci);
+    this.httpKlijent.post("https://localhost:44308/Artikal/DodajSlike/"+ this.idArtikla, frmData)
       .subscribe((x: any) => {
         if (x != null) {
           alert("Uspjesno dodane slike");
@@ -159,8 +164,8 @@ export class ProductPageComponent implements OnInit {
         {
           alert("Pogresan unos");
         }
-      })
-
+      });
   }
+
 }
 
