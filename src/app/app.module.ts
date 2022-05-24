@@ -22,6 +22,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { TwoWayAuthComponent } from './two-way-auth/two-way-auth.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -57,6 +58,7 @@ TwoWayAuthComponent,
     Ng2SearchPipeModule,
     BrowserAnimationsModule,
     CommonModule,
+    NgxPaginationModule,
 
   ],
   providers: [[CookieService]],

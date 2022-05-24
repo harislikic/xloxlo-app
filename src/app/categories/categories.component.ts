@@ -11,8 +11,10 @@ export class CategoriesComponent implements OnInit {
   idKategorije:any= Number(this.route.snapshot.paramMap.get('id'));
   Artikli:any;
   searchtext : any;
-  
+
   constructor(private route: ActivatedRoute,private httpKlijent: HttpClient, private  router :Router) { }
+  totalLength:any;
+  page:number = 1;
 
   ngOnInit(): void {
  this.UcitajArtikle()

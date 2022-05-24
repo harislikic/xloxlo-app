@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MojConfig } from '../moj-config';
 import { AutentifikacijaHelper } from '../_helpers/autentifikacija-helper';
 import { LoginInformacije } from '../_helpers/login-informacije';
-  
+
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -17,12 +17,20 @@ export class HomePageComponent implements OnInit {
   zam:any;
   Kategorije:any;
 
-  
+
   constructor(private httpKlijent: HttpClient, private  router :Router) { }
 
-  ngOnInit(): void {
+  totalLength:any;
+  page:number = 1;
+
+
+
+
+    ngOnInit(): void {
     this.UcitajArtikle();
-this.UcitajKategorije();
+    this.UcitajKategorije();
+    this.totalLength = this.Artikli.length;
+    console.log(this.totalLength);
 
   }
   UcitajPoKategoriji(id:any=null){
@@ -44,6 +52,7 @@ this.UcitajKategorije();
       console.log("Artikli", x);
       this.Artikli = x;
       this.zam=x;
+
     });
 
   }
@@ -62,6 +71,15 @@ ProduktDetalji(id:any){
 
   this.router.navigate(['product'])
   localStorage.setItem("ProduktDetalji", id);
+  }
+
+  izvjestaj() {
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/pdf');
+    this.httpKlijent.get("https://localhost:44308/Report/Report",{ headers: headers, responseType: 'blob' as 'json' })
+      .subscribe(x=>{
+
+      });
   }
 
 }
