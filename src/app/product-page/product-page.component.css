@@ -8,3 +8,15 @@ body{background: #eee}
 .cursor:hover{color: blue}
 .cursor{cursor: pointer}
 .textarea{resize: none}
+
+.form-control{
+  width: 30%;
+  display: inline;
+}
+
+.mb-3
+{
+ justify-content: center;
+  display: flex;
+ width: auto;
+}

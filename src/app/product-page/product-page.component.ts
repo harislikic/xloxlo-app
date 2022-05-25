@@ -127,33 +127,19 @@ export class ProductPageComponent implements OnInit {
         }
       })
     }
-
-
   getFileDetails(e:any) {
     console.log (e.target.files);
     for (var i = 0; i < e.target.files.length; i++) {
       this.myFiles.push(e.target.files[i]);
     }
-
-
   }
-
-
   dodajslike() {
-
     const frmData = new FormData();
     for (var i = 0; i < this.myFiles.length; i++) {
-      frmData.append("fileUpload", this.myFiles[i]);
+      frmData.append("files", this.myFiles[i]);
     }
     console.log(frmData);
     console.log(this.myFiles);
-
-    this.httpKlijent.post("https://localhost:44308/Artikal/DodajSlike/"+ this.idArtikla,frmData , {responseType: 'blob'} )
-    let podaci={
-      imageName : this.myFiles,
-      artikal_id : this.idArtikla
-    };
-    console.log("prije",podaci);
     this.httpKlijent.post("https://localhost:44308/Artikal/DodajSlike/"+ this.idArtikla, frmData)
       .subscribe((x: any) => {
         if (x != null) {
@@ -166,6 +152,9 @@ export class ProductPageComponent implements OnInit {
         }
       });
   }
+
+
+
 
 }
 

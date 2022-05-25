@@ -25,7 +25,7 @@
 					<div class="row">
 						<form control="" class="form-group">
 							<div class="row">
-								<input  [(ngModel)]="txtKorisnickoIme" #email="ngModel" ng-model="txtKorisnickoIme" type="text" name="username" id="username" class="form__input" placeholder="Username"  required minlength="4">
+								<input  [(ngModel)]="txtKorisnickoIme" #email="ngModel" ng-model="txtKorisnickoIme" type="text" name="username" id="username" class="form__input" placeholder="Korisničko ime"  required minlength="4">
                 <div *ngIf="email.touched && email.invalid" class="alert-danger">
                   Obavezno polje
                 </div>
@@ -36,7 +36,7 @@
                 <div *ngIf="sifra.touched && sifra.invalid" class="alert-danger">
                   Obavezno polje
                 </div>
-				
+
 								<a class="fa fa-eye showhide"(click)="password()"></a>
 							</div>
 							<div class="row">

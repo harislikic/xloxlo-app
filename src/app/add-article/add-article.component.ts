@@ -157,10 +157,6 @@ export class AddArticleComponent implements OnInit {
         }
       });
 
-
-
-
-
   }
 
   registrovanchechbox(Event: any) {

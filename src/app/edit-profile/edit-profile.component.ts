@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AutentifikacijaHelper } from '../_helpers/autentifikacija-helper';
 import {Observable} from "rxjs";
 
+
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
