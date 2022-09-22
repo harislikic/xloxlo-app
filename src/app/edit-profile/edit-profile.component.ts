@@ -44,21 +44,21 @@ export class EditProfileComponent implements OnInit {
 
   }
   UcitajKorisnika(){
-    this.httpKlijent.get("https://localhost:44308/Korisnik/Get/"+AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId)
+    this.httpKlijent.get("https://localhost:5001/Korisnik/Get/"+AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId)
     .subscribe(x=>{
       console.log("korisnik", x);
       this.korisnik = x;
     });
   }
   UcitajGradove() {
-    this.httpKlijent.get("https://localhost:44308/Grad/GetAll")
+    this.httpKlijent.get("https://localhost:5001/Grad/GetAll")
     .subscribe((x:any)=>{
     console.log("Gradovi",x);
     this.Gradovi=x;
 
   })}
   Ukljuci(){
-    this.httpKlijent.post("https://localhost:44308/Korisnik/UpdateTwoway/"+ AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId,true)
+    this.httpKlijent.post("https://localhost:5001/Korisnik/UpdateTwoway/"+ AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId,true)
       .subscribe((x:any)=>{
         if(x !=null)
         {
@@ -73,7 +73,7 @@ export class EditProfileComponent implements OnInit {
       });
   }
   Iskljuci(){
-    this.httpKlijent.post("https://localhost:44308/Korisnik/UpdateTwoway/"+ AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId,false)
+    this.httpKlijent.post("https://localhost:5001/Korisnik/UpdateTwoway/"+ AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId,false)
     .subscribe((x:any)=>{
       if(x !=null)
       {
@@ -109,7 +109,7 @@ export class EditProfileComponent implements OnInit {
       console.log("ovo su podatci",saljemo);
 
 
-      this.httpKlijent.post("https://localhost:44308/Korisnik/Update/"+ AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId,saljemo)
+      this.httpKlijent.post("https://localhost:5001/Korisnik/Update/"+ AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId,saljemo)
       .subscribe((x:any)=>{
         if(x !=null)
         {
@@ -128,7 +128,7 @@ export class EditProfileComponent implements OnInit {
       const formData = new FormData();
       formData.append("file",this.file, this.file.name)
 console.log("aa",formData);
-      this.httpKlijent.post("https://localhost:44308/Korisnik/DodajSlike/"+ AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId,formData , {responseType: 'blob'})
+      this.httpKlijent.post("https://localhost:5001/Korisnik/DodajSlike/"+ AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId,formData , {responseType: 'blob'})
         .subscribe((x:any)=>{
          console.log(x);
         });

@@ -23,7 +23,7 @@ export class ResetPasswordComponent implements OnInit {
     this.getUser();
   }
   getUser(){
-    this.httpKlijent.get("https://localhost:44308/Korisnik/Get/"+ AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId)
+    this.httpKlijent.get("https://localhost:5001/Korisnik/Get/"+ AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId)
     .subscribe(x=>{
       console.log("Korisnik", x);
       this.Korisnik = x;
@@ -45,7 +45,7 @@ export class ResetPasswordComponent implements OnInit {
       }
       console.log(this.novalozinka1);
 
-    this.httpKlijent.post<LoginInformacije>("https://localhost:44308/Korisnik/ResetPassword/" + this.Korisnik.id, saljemo)
+    this.httpKlijent.post<LoginInformacije>("https://localhost:5001/Korisnik/ResetPassword/" + this.Korisnik.id, saljemo)
     .subscribe((x:LoginInformacije)=>{
       if(x !=null)
       {
@@ -56,7 +56,7 @@ export class ResetPasswordComponent implements OnInit {
         emailSubject: "Promjenili ste lozinku",
         emailBody: "Postovani, upravo ste promjenili svoju lozinku. U koliko se ne radi o Vasoj akciji molimo da nas obavjestite."
        }
-       this.httpKlijent.post<LoginInformacije>("https://localhost:44308/Email", mail) .subscribe(x=>{
+       this.httpKlijent.post<LoginInformacije>("https://localhost:5001/Email", mail) .subscribe(x=>{
         console.log("Mail", x);
     
       });

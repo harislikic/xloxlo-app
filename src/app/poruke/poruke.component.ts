@@ -52,7 +52,7 @@ export class PorukeComponent implements OnInit {
 
   ucitajposiljaoca()
   {
-    this.httpKlijent.get("https://localhost:44308/Poruka/GetPosiljaocId/"
+    this.httpKlijent.get("https://localhost:5001/Poruka/GetPosiljaocId/"
       +AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId)
       .subscribe(x=>{
         console.log("posiljaoc", x);
@@ -61,7 +61,7 @@ export class PorukeComponent implements OnInit {
   }
   ucitajprimaoca()
   {
-    this.httpKlijent.get("https://localhost:44308/Poruka/GetPrimaocId/"
+    this.httpKlijent.get("https://localhost:5001/Poruka/GetPrimaocId/"
       +AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId)
       .subscribe(x=>{
         console.log("primaoc", x);
@@ -75,7 +75,7 @@ export class PorukeComponent implements OnInit {
       primaoc_id: 9
     };
     console.log(podaci);
-    this.httpKlijent.post("https://localhost:44308/Poruka/Add",podaci).subscribe((x:any)=>{
+    this.httpKlijent.post("https://localhost:5001/Poruka/Add",podaci).subscribe((x:any)=>{
       if (x != null) {
         alert("Uspješno poslana poruka");
         console.log("x", x);

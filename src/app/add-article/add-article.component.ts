@@ -52,35 +52,35 @@ export class AddArticleComponent implements OnInit {
 
 
   UcitajKategorije() {
-    this.httpKlijent.get("https://localhost:44308/KategorijaProdukta/GetAll").subscribe((x: any) => {
+    this.httpKlijent.get("https://localhost:5001/KategorijaProdukta/GetAll").subscribe((x: any) => {
       console.log("Kategorije", x)
       this.Kategorije = x;
     })
   }
 
   UcitajGradove() {
-    this.httpKlijent.get("https://localhost:44308/Grad/GetAll").subscribe((x: any) => {
+    this.httpKlijent.get("https://localhost:5001/Grad/GetAll").subscribe((x: any) => {
       console.log("Gradovi", x);
       this.Gradovi = x;
     })
   }
 
   UcitajBrendove() {
-    this.httpKlijent.get("https://localhost:44308/Brand/GetAll").subscribe((x: any) => {
+    this.httpKlijent.get("https://localhost:5001/Brand/GetAll").subscribe((x: any) => {
       console.log("Brendovi", x);
       this.Brendovi = x;
     })
   }
 
   UcitajSpolove() {
-    this.httpKlijent.get("https://localhost:44308/Spol/GetAll").subscribe((x: any) => {
+    this.httpKlijent.get("https://localhost:5001/Spol/GetAll").subscribe((x: any) => {
       console.log("Spolovi");
       this.Spolovi = x;
     })
   }
 
   UcitajSatnje() {
-    this.httpKlijent.get("https://localhost:44308/Stanje/GetAll").subscribe((x: any) => {
+    this.httpKlijent.get("https://localhost:5001/Stanje/GetAll").subscribe((x: any) => {
       console.log("Stanja", x);
       this.Stanja = x;
     })
@@ -93,7 +93,7 @@ export class AddArticleComponent implements OnInit {
   upload() {
     let formData = new FormData();
     formData.append('file', this.file);
-    this.httpKlijent.post("https://localhost:44308/Artikal/Upload", formData).toPromise().then(
+    this.httpKlijent.post("https://localhost:5001/Artikal/Upload", formData).toPromise().then(
       res => {
         console.log(res);
         this.res = res;
@@ -133,7 +133,7 @@ export class AddArticleComponent implements OnInit {
     };
     console.log("prije",podaci);
 
-    this.httpKlijent.post("https://localhost:44308/Artikal/Add", podaci  )
+    this.httpKlijent.post("https://localhost:5001/Artikal/Add", podaci  )
       .subscribe((x: any) => {
         if (x != null) {
           alert("Uspjesno dodan artikal");
@@ -146,7 +146,7 @@ export class AddArticleComponent implements OnInit {
           let id= this.novidodani.id;
           console.log("ovo je",formData)
 
-          this.httpKlijent.post("https://localhost:44308/Artikal/DodajSliku/"+id,formData, {responseType: 'blob'})
+          this.httpKlijent.post("https://localhost:5001/Artikal/DodajSliku/"+id,formData, {responseType: 'blob'})
             .subscribe((x:any)=>{
               console.log("slika ",x);
             })

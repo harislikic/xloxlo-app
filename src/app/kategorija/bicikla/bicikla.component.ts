@@ -19,7 +19,7 @@ export class BiciklaComponent implements OnInit {
   }
 
   UcitajArtikle(){
-    this.httpKlijent.get("https://localhost:44308/Artikal/GetPoKategoriji/4")
+    this.httpKlijent.get("https://localhost:5001/Artikal/GetPoKategoriji/4")
       .subscribe(x=>{
         console.log("Artikli", x);
         this.Artikli = x;

@@ -40,33 +40,35 @@ export class ProductPageComponent implements OnInit {
     console.log(this.isLog);
     this.UcitajKomentare();
     this.UcitajSlikeArtikla();
+   
+  
 
   }
   UcitajSlikeArtikla(){
-    this.httpKlijent.get("https://localhost:44308/Artikal/GetSlikepoID/"+this.idArtikla)
+    this.httpKlijent.get("https://localhost:5001/Artikal/GetSlikepoID/"+this.idArtikla)
       .subscribe(x=>{
-        console.log(x);
+        console.log('slike artikla',x);
         this.SlikeArtikla = x;
       });
   }
 
   UcitajLogiranog(){
-    this.httpKlijent.get("https://localhost:44308/Korisnik/Get/"+AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId)
+    this.httpKlijent.get("https://localhost:5001/Korisnik/Get/"+AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId)
     .subscribe(x=>{
-      console.log("korisnik", x);
+      console.log("logirani korisnik ", x);
       this.Logirani = x;
     });
   }
 
   ObrisiObjavu(id:any){
-    this.httpKlijent.delete("https://localhost:44308/Komentar/Delete/"+id )
+    this.httpKlijent.delete("https://localhost:5001/Komentar/Delete/"+id )
     .subscribe(x=>{
       alert("Komentar uspjesno izbrisan!")
       this.UcitajKomentare();
     });
   }
   UcitajKomentare(){
-     this.httpKlijent.get("https://localhost:44308/Komentar/Get/"+ this.idArtikla)
+     this.httpKlijent.get("https://localhost:5001/Komentar/Get/"+ this.idArtikla)
     .subscribe(x=>{
       console.log("Komentari", x);
       this.Komentari = x;
@@ -75,9 +77,9 @@ export class ProductPageComponent implements OnInit {
     });
   }
   UcitajArtikal(){
-    this.httpKlijent.get("https://localhost:44308/Artikal/Get/"+ this.idArtikla)
+    this.httpKlijent.get("https://localhost:5001/Artikal/Get/"+ this.idArtikla)
     .subscribe(x=>{
-      console.log("ArtikalProductPage", x);
+      console.log("Artikalkojijelogovan", x);
       this.Artikal = x;
 
     });
@@ -92,7 +94,7 @@ export class ProductPageComponent implements OnInit {
         korisnikID: AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId
       }
       if(this.txtSadrzaj!=null){
-      this.httpKlijent.post("https://localhost:44308/Komentar/Add",podaci).subscribe((x:any)=>
+      this.httpKlijent.post("https://localhost:5001/Komentar/Add",podaci).subscribe((x:any)=>
       {
         if (x != null) {
           alert("Uspjesno dodan komentar");
@@ -116,7 +118,7 @@ export class ProductPageComponent implements OnInit {
 
       console.log(podaci);
 
-      this.httpKlijent.post("https://localhost:44308/Poruka/Add",podaci).subscribe((x:any)=>
+      this.httpKlijent.post("https://localhost:5001/Poruka/Add",podaci).subscribe((x:any)=>
       {
         if (x != null) {
           alert("Uspjesno poslana poruka");
@@ -140,7 +142,7 @@ export class ProductPageComponent implements OnInit {
     }
     console.log(frmData);
     console.log(this.myFiles);
-    this.httpKlijent.post("https://localhost:44308/Artikal/DodajSlike/"+ this.idArtikla, frmData)
+    this.httpKlijent.post("https://localhost:5001/Artikal/DodajSlike/"+ this.idArtikla, frmData)
       .subscribe((x: any) => {
         if (x != null) {
           alert("Uspjesno dodane slike");

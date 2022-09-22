@@ -3,7 +3,7 @@ import { AutentifikacijaToken } from "./_helpers/login-informacije";
 
 
 export class MojConfig{
-    static adresa_servera :"https://localhost:44308";
+    static adresa_servera :"https://localhost:5001";
 
     static http_opcije=function () {
 

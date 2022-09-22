@@ -19,7 +19,7 @@ export class AutomobiliComponent implements OnInit {
   }
 
   UcitajArtikle(){
-    this.httpKlijent.get("https://localhost:44308/Artikal/GetPoKategoriji/2")
+    this.httpKlijent.get("https://localhost:5001/Artikal/GetPoKategoriji/2")
       .subscribe(x=>{
         console.log("Artikli", x);
         this.Artikli = x;

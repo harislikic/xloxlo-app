@@ -46,7 +46,7 @@ Stanja:any;
 
 
   UcitajArtikle(){
-    this.httpKlijent.get("https://localhost:44308/Artikal/GetPoKorisniku/"+ AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId )
+    this.httpKlijent.get("https://localhost:5001/Artikal/GetPoKorisniku/"+ AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId )
     .subscribe(x=>{
       console.log("Artikli", x);
       this.Artikli = x;
@@ -54,7 +54,7 @@ Stanja:any;
 
   }
   IzbrisiProizvod(id:any){
-    this.httpKlijent.delete("https://localhost:44308/Artikal/Delete/"+ id)
+    this.httpKlijent.delete("https://localhost:5001/Artikal/Delete/"+ id)
     .subscribe(x=>{
       alert("Objava uspjesno izbrisana!")
 this.UcitajArtikle();
@@ -64,27 +64,27 @@ this.UcitajArtikle();
    this.uredi[index]=!this.uredi[index];
   }
   UcitajKategorije(){
-    this.httpKlijent.get("https://localhost:44308/KategorijaProdukta/GetAll").subscribe((x:any)=>{
+    this.httpKlijent.get("https://localhost:5001/KategorijaProdukta/GetAll").subscribe((x:any)=>{
       this.Kategorije =x;
     })
   }
   UcitajGradove(){
-    this.httpKlijent.get("https://localhost:44308/Grad/GetAll").subscribe((x:any)=>{
+    this.httpKlijent.get("https://localhost:5001/Grad/GetAll").subscribe((x:any)=>{
       this.Gradovi = x;
     })
   }
   UcitajBrendove(){
-    this.httpKlijent.get("https://localhost:44308/Brand/GetAll").subscribe((x:any)=>{
+    this.httpKlijent.get("https://localhost:5001/Brand/GetAll").subscribe((x:any)=>{
       this.Brendovi = x;
     })
   }
   UcitajSpolove(){
-    this.httpKlijent.get("https://localhost:44308/Spol/GetAll").subscribe((x:any)=>{
+    this.httpKlijent.get("https://localhost:5001/Spol/GetAll").subscribe((x:any)=>{
       this.Spolovi=x;
     })
   }
   UcitajSatnje(){
-    this.httpKlijent.get("https://localhost:44308/Stanje/GetAll").subscribe((x:any)=>{
+    this.httpKlijent.get("https://localhost:5001/Stanje/GetAll").subscribe((x:any)=>{
       this.Stanja= x;
     })
   }
@@ -100,7 +100,7 @@ this.UcitajArtikle();
       datumObjave: new Date(),
       stanje: artikal.stanje_id
     };
-    this.httpKlijent.post("https://localhost:44308/Artikal/Update/" + artikal.id, saljemo)
+    this.httpKlijent.post("https://localhost:5001/Artikal/Update/" + artikal.id, saljemo)
     .subscribe((x:any)=>{
       if(x !=null)
       {

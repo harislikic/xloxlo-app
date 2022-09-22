@@ -31,14 +31,14 @@ export class SignUpComponent implements OnInit {
     this.UcitajSpolove();
   }
   UcitajGradove() {
-    this.httpKlijent.get("https://localhost:44308/Grad/GetAll")
+    this.httpKlijent.get("https://localhost:5001/Grad/GetAll")
     .subscribe((x:any)=>{
     console.log("Gradovi",x);
     this.Gradovi=x;
 
   })}
   UcitajSpolove() {
-    this.httpKlijent.get("https://localhost:44308/Spol/GetAll").subscribe((x: any) => {
+    this.httpKlijent.get("https://localhost:5001/Spol/GetAll").subscribe((x: any) => {
       console.log("Spolovi",x);
       this.Spolovi = x;
     })
@@ -62,7 +62,7 @@ export class SignUpComponent implements OnInit {
       kontaktTelefon:this.txtBrojtelefona
     
     };
-    this.httpKlijent.post("https://localhost:44308/Korisnik/Add", saljemo)
+    this.httpKlijent.post("https://localhost:5001/Korisnik/Add", saljemo)
     .subscribe((x:any)=>{
       if(x !=null)
       {

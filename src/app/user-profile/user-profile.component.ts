@@ -21,7 +21,7 @@ KorisnikID:any=Number(this.route.snapshot.paramMap.get('id'));
     console.log(this.ifAdmin)
   }
 UcitajKorisnika(){
-  this.httpKlijent.get("https://localhost:44308/Korisnik/Get/"+ this.KorisnikID)
+  this.httpKlijent.get("https://localhost:5001/Korisnik/Get/"+ this.KorisnikID)
   .subscribe(x=>{
     console.log("Korisnik", x);
     this.Korisnik = x;
@@ -39,7 +39,7 @@ btnposalji()
 
   console.log(podaci);
 
-  this.httpKlijent.post("https://localhost:44308/Poruka/Add",podaci).subscribe((x:any)=>
+  this.httpKlijent.post("https://localhost:5001/Poruka/Add",podaci).subscribe((x:any)=>
   {
     if (x != null) {
       alert("Uspjesno poslana Poruka");

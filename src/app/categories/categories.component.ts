@@ -15,15 +15,26 @@ export class CategoriesComponent implements OnInit {
   constructor(private route: ActivatedRoute,private httpKlijent: HttpClient, private  router :Router) { }
   totalLength:any;
   page:number = 1;
-
+  zam:any;
   ngOnInit(): void {
- this.UcitajArtikle()
+  this.UcitajArtikle();
   }
+ 
   UcitajArtikle(){
-    this.httpKlijent.get("https://localhost:44308/Artikal/GetPoKategoriji/"+ this.idKategorije)
+    this.httpKlijent.get("https://localhost:5001/Artikal/GetPoKategoriji/"+ this.idKategorije)
       .subscribe(x=>{
         console.log("Artikli", x);
         this.Artikli = x;
       });
+  }
+  Pretraga()
+  {
+    if(this.searchtext===" ")
+    {
+     this.ngOnInit();
+    }
+    else {
+     return this.Artikli.filter((x:any)=> x.nazivArtikla.toLowerCase().includes(this.searchtext));
+    }
   }
 }

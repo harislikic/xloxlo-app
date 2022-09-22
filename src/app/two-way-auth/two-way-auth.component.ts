@@ -25,7 +25,7 @@ korisnik:any;
 
   ngOnInit(): void {
     this.broj=Math.random().toString().slice(2,11);
-    this.httpKlijent.get("https://localhost:44308/Korisnik/Get/"+localStorage.getItem('idza2way'))
+    this.httpKlijent.get("https://localhost:5001/Korisnik/Get/"+localStorage.getItem('idza2way'))
     .subscribe(x=>{
       console.log("korisnik", x);
       this.korisnik = x;
@@ -36,7 +36,7 @@ korisnik:any;
         emailBody:"Postovani, ovo vam je kod za prijavljivanje na profil " +this.broj+" !"
       }
   console.log(saljemo);
-      this.httpKlijent.post("https://localhost:44308/Email", saljemo)
+      this.httpKlijent.post("https://localhost:5001/Email", saljemo)
       .subscribe((x:any)=>{
        
         console.log(x);
