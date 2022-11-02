@@ -1,6 +1,6 @@
 
 <div class="ud-header">
-  <h2 class="text-center">Public Chat</h2>
+  <h2 class="text-center">Poruke</h2>
 </div>
 <div class="ud-body">
   <div class="msg-box">
@@ -24,7 +24,7 @@
     <div class="row">
       <div class="col-sm-5 col-md-6 col-12 pb-4">
         <p>Poruke</p>
-        <div *ngFor="let s of primaoc " class="comment mt-4 text-justify float-left"> <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40">
+        <div *ngFor="let s of poruke " class="comment mt-4 text-justify float-left"> <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40">
           <h4>{{s.korisnik.ime}} {{s.korisnik.prezime}}</h4>- <span>{{s.datum.slice(0,10)}}</span> <br>
           <p>{{s.sadrzaj}}</p>
         </div>

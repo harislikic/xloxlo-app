@@ -30,9 +30,7 @@ export class LoginComponent implements OnInit {
     let saljemo = {
       korisnickoIme: this.txtKorisnickoIme,
       lozinka: this.txtPassword,
-
     };
-    
 
     const headers = new HttpHeaders().set('X-XSRF-TOKEN', this.AntiForgery);
     console.log(headers);
@@ -46,29 +44,46 @@ export class LoginComponent implements OnInit {
         if (x != null) {
           console.log('podaci za pokusaj logina', x);
           AutentifikacijaHelper.setLoginInfo(x);
-          this.httpKlijent
-            .get(
-              'https://localhost:5001/Korisnik/Get/' +
-                x.autentifikacijaToken.korisnickiNalogId
-            )
-            .subscribe((x) => {
-              console.log('korisnik', x);
-              this.korisnik = x;
-              if (!this.korisnik.twoway) {
+          if (x.autentifikacijaToken.korisnickiNalog.isAdmin) {
+            alert('admin je ulogovan');
+            this.httpKlijent
+              .get(
+                'https://localhost:5001/Administrator/Get/' +
+                  x.autentifikacijaToken.korisnickiNalogId
+              )
+              .subscribe((x) => {
+                console.log('korisnik', x);
+                this.korisnik = x;
                 alert('Dobrodosli!');
-                this.router.navigate(['homepage']).then(() => {
-                  window.location.reload();
-                });
-              }
-              if (this.korisnik.twoway === true) {
-                alert('Potrebna je validacija maila!');
-                localStorage.setItem('idza2way', this.korisnik.id);
-                this.router.navigate(['two-way']);
-              }
-            });
-
-          if (this.korisnik.twoway == false) {
+                  this.router.navigate(['homepage']).then(() => {
+                    window.location.reload();
+                  });
+              });
           }
+          if (x.isPermisijaKorisnik) {
+            this.httpKlijent
+              .get(
+                'https://localhost:5001/Korisnik/Get/' +
+                  x.autentifikacijaToken.korisnickiNalogId
+              )
+              .subscribe((x) => {
+                console.log('korisnik', x);
+                this.korisnik = x;
+                if (!this.korisnik.twoway) {
+                  alert('Dobrodosli!');
+                  this.router.navigate(['homepage']).then(() => {
+                    window.location.reload();
+                  });
+                }
+                if (this.korisnik.twoway === true) {
+                  alert('Potrebna je validacija maila!');
+                  localStorage.setItem('idza2way', this.korisnik.id);
+                  this.router.navigate(['two-way']);
+                }
+              });
+          }
+
+          
         } else {
           AutentifikacijaHelper.setLoginInfo(null as any);
           alert('Neispravan login,pokusajte ponovo!');
